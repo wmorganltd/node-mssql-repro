@@ -12,5 +12,7 @@ describe('node-mssql-repro', () => {
     after('disconnect', async () => {
         await connection.close();
     });
-    it('breaks as expected :-)');
+    it('breaks as expected :-)', async () => {
+        await connection.query(`INSERT INTO test (varcharColumn) VALUES (${['RDG']} )`);
+    });
 });

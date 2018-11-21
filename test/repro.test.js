@@ -13,6 +13,12 @@ describe('node-mssql-repro', () => {
         await connection.close();
     });
     it('breaks as expected :-)', async () => {
-        await connection.query(`INSERT INTO test (varcharColumn) VALUES (${['RDG']} )`);
+        // works:
+        console.log(await connection.query`SELECT * FROM test WHERE varcharColumn IN (${['RDG', 'RDG2']})`);
+        // works:
+        await connection.query`INSERT INTO test (integerColumn, varcharColumn) VALUES (${[1, 'RDG']})`;
+        // breaks:
+        await connection.query(`INSERT INTO test (integerColumn, varcharColumn) VALUES (${[1, 'RDG']})`);
+        console.log(await connection.query`SELECT * FROM test`);
     });
 });

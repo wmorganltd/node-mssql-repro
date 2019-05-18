@@ -19,6 +19,6 @@
   "dependencies": {
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
-    "mssql": "^4.2.3"
+    "mssql": "^5.1.0"
   }
 }
